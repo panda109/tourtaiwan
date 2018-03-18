@@ -1,0 +1,161 @@
+<!-- app/templates/base.html -->
+
+{% extends "bootstrap/base.html" %}
+
+{% block title %}TourTaiwan{% endblock %}
+
+{% block head %}
+	{{ super() }}
+	<link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+	<link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}"/>
+{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url_for('main.index') }}">TourTaiwan</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="{{ url_for('taiwan.list_stories', page=1 ) }}">Story</a></li>
+
+              <li class="dropdown">
+	                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                	Tour
+	                    <b class="caret"></b>
+	                </a>
+	                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+	                
+		               	<li>
+		                	<a class="dropdown-item" href="{{ url_for('interactive.create' ) }}">
+		                	Create
+		                	</a>
+		                </li>
+		               	<li>
+		                	<a class="dropdown-item" href="{{ url_for('interactive.list') }}">
+		                	List
+		                	</a>
+		                </li>	                               
+	                </ul>                              
+                </li> 
+              
+              
+              <li class="dropdown">
+	                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                	Catalogs
+	                    <b class="caret"></b>
+	                </a>
+	                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+	                
+		                {% for catalog in catalogs %}
+		               	<li>
+		                	<a class="dropdown-item" href="{{ url_for('product.list_products', id=catalog.id, page = 1 ) }}">
+		                	{{catalog.catalog_name}}
+		                	</a>
+		                </li>
+		                {% endfor %}
+	                               
+	                </ul>                              
+                </li>                 
+                <li><a href="{{ url_for('product.shopping_cart') }}">Cart</a></li>
+                <li><a href="{{ url_for('product.shopping_order', page = 1) }}">Order</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if current_user.is_authenticated %}
+                	{% if current_user.is_admin %}
+		                <li class="dropdown">
+		                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                    Admin 
+		                    <b class="caret"></b></a>
+		                    <ul class="dropdown-menu">
+					        	<li><a href="{{ url_for('admin.products', page = 1) }}">Products</a></li>
+					        	<li><a href="{{ url_for('admin.catalogs') }}">Catalogs</a></li>
+					        	<li><a href="{{ url_for('admin.orders', page = 1)}}">Orders</a></li>
+					    		<li><a href="{{ url_for('admin.users', page = 1 )}}">Users</a></li>
+					    		<li><a href="{{ url_for('admin.stories', page = 1) }}">Stories</a></li>
+					    		<li><a href="{{ url_for('admin.tours', page = 1) }}">Tours</a></li> 				        	
+		                    </ul>
+		                </li>				    
+				    {% endif %}
+			    
+                <li class="dropdown">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Account 
+                    <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ url_for('auth.change_password') }}">Change Password</a></li>
+                        <li><a href="{{ url_for('auth.change_email_request') }}">Change Email</a></li>
+                        <li><a href="{{ url_for('auth.change_add') }}">Change Address</a></li>
+                        <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
+                    </ul>
+                </li>
+                {% else %}
+                <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    {% block page_content %}{% endblock %}
+
+    <div class="row">
+
+    <div class="footer text-center">
+    <p>
+    <p>
+		<div style='border-bottom:1px solid #ccc;'></div>
+		    <p></p>
+			<p></p>
+
+			<SPAN class="text-left" STYLE="float:left">
+			    <p>
+				<li>About TourTaiwan.me</li>
+				<li>How to buy</li>
+				<li>Online help</li>
+				<li>Login</li>
+				<li>Sign up</li>
+			    </p>
+			</SPAN>
+
+			<DIV>
+			<SPAN STYLE="float:right">
+			    <p>
+				  <img src="{{ url_for('static', filename='img/line.jpg') }}" style="width:52px;height:52px;border:0;">
+				  <img src="https://qr-official.line.me/M/EjcvhB4dLG.png" style="width:52px;height:52px;border:0;">
+				  
+				<a target="_blank" href="https://www.facebook.com/tourtaiwanme-1094327660723216/">
+				  <img src="{{ url_for('static', filename='img/Facebook-icon-logo.jpg') }}" style="width:52px;height:52px;border:0;">
+				</a>
+			    </p>
+			</SPAN>
+						
+			<p>Copyright TourTaiwan 2018. All rights reserved.</p>
+			<p>eMail : tourtaiwan5812@gmail.com</p>
+		</div>
+	</div> 
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{{ moment.include_moment() }}
+{% endblock %}

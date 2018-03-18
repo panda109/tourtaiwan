@@ -1,0 +1,11 @@
+Dear {{ user.username }},
+
+Your order was confirmed.
+
+Order number : {{ order.id }}
+
+Sincerely,
+
+The TourTaiwan Team
+
+Note: replies to this email address are not monitored.
