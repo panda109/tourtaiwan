@@ -62,16 +62,16 @@ def story():
 
 @manager.command
 def admin():
-    user = User()
-    user.username = 'Tim'
-    user.role_id = 1
-    user.email = 'yr6703@yahoo.com.tw'
-    user.phone = '0921111111'
-    user.add = 'sdfdsfsdfsdfsd'
-    user.password_hash = generate_password_hash('1111', method="pbkdf2:sha1")
-    user.is_admin = True
-    user.confirmed = True
-    db.session.add(user)
+    user1 = User()
+    user1.username = 'Tim'
+    user1.role_id = 1
+    user1.email = 'yr6703@yahoo.com.tw'
+    user1.phone = '0921111111'
+    user1.add = 'sdfdsfsdfsdfsd'
+    user1.password_hash = generate_password_hash('1111', method="pbkdf2:sha1")
+    user1.is_admin = True
+    user1.confirmed = True
+    db.session.add(user1)
     db.session.commit()
 
 @manager.command
@@ -86,6 +86,15 @@ def user():
     user.is_admin = False
     user.confirmed = True
     db.session.add(user)
+    user1 = User()
+    user1.username = 'blue'
+    user1.role_id = 1
+    user1.email = 'blue@blue.com'
+    user1.phone = '0921111111'
+    user1.add = 'sdfdsfsdfsdfsd'
+    user1.password_hash = generate_password_hash('1111', method="pbkdf2:sha1")
+    user1.is_admin = False
+    user1.confirmed = True
     db.session.commit()   
 
 @manager.command
