@@ -29,10 +29,11 @@
             <th></th>
             <th>Car_type</th>
             <th>Tour_type</th>
+            <th>StartDate</th>
             <th>Total_price</th>
             <th>Tour_guide</th>
-            <th>Paied</th>
-            <th>StartDate</th>
+            <th>Status</th>
+
         </tr>
     </thead>
     <tbody>
@@ -42,16 +43,23 @@
         	<td><a href= "{{url_for("interactive.remove", id = interactive.id)}}" class="glyphicon glyphicon-trash"></a></td>
             <td>{{ interactive.get_car(interactive.car_type).first().car_name }}</td>
             <td>{{ interactive.get_tour(interactive.tour_type).first().tour_name }}</td>
+            <td>{{ interactive.tour_date }}</td>
             <td>{{ interactive.total_price }}</td>
             <td>{{ interactive.tour_guide }}</td>
-            
-            {% if interactive.paied == False %}
-	            <td>button -> stripe</td>
+
+            {% if interactive.paied == True %}
+            <td>paied</td>
             {% else %}
-            	<td>Paied!!</td>
+                {% if interactive.ordered == False %}
+	                <td>button(order)</td>
+                {% else %}
+                    {% if interactive.comfirmed == False %}
+                        <td>Wait Comfirmed</td>
+                    {% else %}
+                        <td>button(pay)</td>
+                    {% endif %}
+                {% endif %}
             {% endif %}
-                       
-            <td>{{ interactive.tour_date }}</td>
         </tr>
         {% endfor %}
         {% else %}

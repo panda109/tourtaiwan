@@ -20,7 +20,7 @@ def pay(id):
     interactive = Interactive.query.get_or_404(id)
     catalogs = Catalog.get_all()
     return render_template('interactive/pay_tour.html',
-                        catalogs=catalogs, interactive = interactive, title="Pay Interactive_order") 
+                        catalogs=catalogs, interactive = interactive, title="Pay Tour")
 
 @interactive.route("/create", methods=['GET', 'POST'])
 @login_required
@@ -47,7 +47,7 @@ def create():
     # pre setting value
     catalogs = Catalog.get_all()
     return render_template('interactive/create_tour.html', form=form,
-                            catalogs=catalogs, title="Add Interactive") 
+                            catalogs=catalogs, title="Add Tour")
 
 @interactive.route("/remove/<int:id>", methods=['GET'])
 @login_required
@@ -59,7 +59,7 @@ def remove(id):
     interactives = Interactive.query.filter_by(userid = current_user.id, paied = False)
     catalogs = Catalog.get_all()
     return render_template('interactive/list_tour.html',
-                        catalogs=catalogs, interactives = interactives, title="Remove Interactive_order") 
+                        catalogs=catalogs, interactives = interactives, title="Remove Tour")
     
 @interactive.route("/list", methods=['GET'])
 @login_required
@@ -69,4 +69,14 @@ def list():
     
     catalogs = Catalog.get_all()
     return render_template('interactive/list_tour.html',
-                        catalogs=catalogs, interactives = interactives, title="List Interactive_order") 
+                        catalogs=catalogs, interactives = interactives, title="List Tour")
+
+
+@interactive.route("/history", methods=['GET'])
+@login_required
+def history():
+    interactives = Interactive.query.filter_by(userid=current_user.id, paied=True)
+
+    catalogs = Catalog.get_all()
+    return render_template('interactive/list_tour.html',
+                           catalogs=catalogs, interactives=interactives, title="List Paied Tour")

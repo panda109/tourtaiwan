@@ -30,9 +30,6 @@ def check_admin():
 
 # app.jinja_env.undefined = jinja2.StrictUndefined
 
-
-
-
 @admin.route("/comfirm_tour/<int:id>", methods=['GET', 'POST'])
 @login_required
 def comfirm_tour(id):
@@ -58,16 +55,9 @@ def tours(page = 1):
     """Return page showing all the products has to offer"""
     check_admin()
     per_page = 5
-    tours = Interactive.query.order_by(Interactive.order_datetime.desc()).paginate(page,per_page,error_out=False)
+    tours = Interactive.query.filter_by(ordered = True).order_by(Interactive.order_datetime.desc()).paginate(page,per_page,error_out=False)
     catalogs = Catalog.get_all()
     return render_template("admin/tours.html", catalogs=catalogs, tours=tours)
-
-
-
-
-
-
-
 
 @admin.route("/stories/<int:page>", methods=['GET', 'POST'])
 @login_required
