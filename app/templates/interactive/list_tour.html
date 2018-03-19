@@ -40,7 +40,11 @@
         {%if interactives %}
         {% for interactive in interactives %}
         <tr>
-        	<td><a href= "{{url_for("interactive.remove", id = interactive.id)}}" class="glyphicon glyphicon-trash"></a></td>
+        	{% if interactive.ordered == False %}
+        	<td><a href= "{{url_for("interactive.remove", id = interactive.id)}}" class="glyphicon glyphicon-remove-sign"></a></td>
+            {% else %}
+			<td><span class="glyphicon glyphicon-earphone"></span></td>
+            {% endif%}
             <td>{{ interactive.get_car(interactive.car_type).first().car_name }}</td>
             <td>{{ interactive.get_tour(interactive.tour_type).first().tour_name }}</td>
             <td>{{ interactive.tour_date }}</td>
@@ -51,12 +55,12 @@
             <td>paied</td>
             {% else %}
                 {% if interactive.ordered == False %}
-	                <td>button(order)</td>
+	                <td><a href={{url_for('interactive.submit',id=interactive.id)}} class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Submit</a></td>
                 {% else %}
                     {% if interactive.comfirmed == False %}
                         <td>Wait Comfirmed</td>
                     {% else %}
-                        <td>button(pay)</td>
+                        <td><a href={{url_for('interactive.pay',id=interactive.id)}} class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Pay  !!</a></td>
                     {% endif %}
                 {% endif %}
             {% endif %}

@@ -12,6 +12,15 @@ from .. import csrf
 from forms import InteractiveForm
 from flask_login import login_user, logout_user, login_required, current_user
 
+@interactive.route("/submit/<int:id>", methods=['GET'])
+@login_required
+def submit(id):
+    
+    interactive = Interactive.query.get_or_404(id)
+    interactive.ordered = True
+    db.session.commit()
+    catalogs = Catalog.get_all()
+    return redirect(url_for('interactive.list'))
 
 @interactive.route("/pay/<int:id>", methods=['GET'])
 @login_required
