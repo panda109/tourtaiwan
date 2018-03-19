@@ -34,8 +34,8 @@ class Interactive(db.Model):
     paied = db.Column(db.Boolean, default=False)
     payment_id = db.Column(db.String(50))
     payment_datetime = db.Column(db.DateTime)
-    comfirmed = db.Column(db.Boolean, default=False)
-    comfirmed_datetime = db.Column(db.DateTime)
+    confirmed = db.Column(db.Boolean, default=False)
+    confirmed_datetime = db.Column(db.DateTime)
 
     
     @classmethod

@@ -24,7 +24,7 @@
 			            <th>Tour_guide</th>
 			            <th>Total_price</th>
 			            <th>Paied</th>
-			            <th>Comfirmed</th>
+			            <th>Confirmed</th>
 
 			        </tr>
               </thead>
@@ -44,10 +44,10 @@
 			            {% else %}
 	                    	<td>Not Paied</td>
 	                    {% endif %}
-			            {% if tour.comfirmed == True  %}
+			            {% if tour.confirmed == True  %}
 			           		<td>Finish</td>
 			            {% else %}
-	                    	<td><a href="{{ url_for('admin.comfirm_tour', id=tour.id) }}" class="glyphicon glyphicon-ok-sign"></a></td>
+	                    	<td><a href="{{ url_for('admin.confirm_tour', id=tour.id) }}" class="glyphicon glyphicon-ok-sign"></a></td>
 	                    {% endif %}	                    
                   
 			        </tr>

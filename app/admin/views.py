@@ -30,20 +30,20 @@ def check_admin():
 
 # app.jinja_env.undefined = jinja2.StrictUndefined
 
-@admin.route("/comfirm_tour/<int:id>", methods=['GET', 'POST'])
+@admin.route("/confirm_tour/<int:id>", methods=['GET', 'POST'])
 @login_required
-def comfirm_tour(id):
+def confirm_tour(id):
     """Update shipout -> True"""
     check_admin()
     tour = Interactive.query.filter_by(id=id).first()
-    if tour.comfirmed == False :
-        tour.comfirmed = True
-        tour.comfirmed_datetime = datetime.datetime.utcnow()
+    if tour.confirmed == False :
+        tour.confirmed = True
+        tour.confirmed_datetime = datetime.datetime.utcnow()
         #db.session.add(order)
         db.session.commit()
         user = User.query.filter_by(id=tour.userid).first()
         send_email(user.email, 'Confirm Your Tour', 'admin/email/tour', user=user, tour=tour)
-        flash('Tour was comfirmed and send email to user.')
+        flash('Tour was confirmed and send email to user.')
     page = 1
     per_page = 1
     tours = Interactive.query.filter_by(id=id).paginate(page,per_page,error_out=False)
