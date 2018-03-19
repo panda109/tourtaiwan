@@ -27,6 +27,7 @@
     <thead>
         <tr>
             <th></th>
+            <th>Tour_id</th>
             <th>Car_type</th>
             <th>Tour_type</th>
             <th>StartDate</th>
@@ -45,6 +46,7 @@
             {% else %}
 			<td><span class="glyphicon glyphicon-earphone"></span></td>
             {% endif%}
+            <td>{{ interactive.id }}</td>
             <td>{{ interactive.get_car(interactive.car_type).first().car_name }}</td>
             <td>{{ interactive.get_tour(interactive.tour_type).first().tour_name }}</td>
             <td>{{ interactive.tour_date }}</td>

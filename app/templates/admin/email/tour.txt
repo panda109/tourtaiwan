@@ -1,8 +1,10 @@
 Dear {{ user.username }},
 
-Your order already comfirmed today.
+Your tour already confirmed today.
 
 Tour number : {{ tour.id }}
+
+Please click pay button and use credit card online.
 
 Sincerely,
 

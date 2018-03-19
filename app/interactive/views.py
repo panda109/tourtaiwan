@@ -7,7 +7,7 @@ from flask import json
 from .. import db
 from datetime import datetime
 from app.interactive import interactive
-from ..models import  Catalog, Interactive, Car_type, Tour_type
+from ..models import  Catalog, Interactive, Car_type, Tour_type, User
 from .. import csrf
 from forms import InteractiveForm
 from flask_login import login_user, logout_user, login_required, current_user
