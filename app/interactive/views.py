@@ -12,7 +12,7 @@ from .. import csrf
 from forms import InteractiveForm
 from flask_login import login_user, logout_user, login_required, current_user
 from ..email import send_email
-from config import MAIL_USERNAME
+from flask import current_app
 @interactive.route("/submit/<int:id>", methods=['GET'])
 @login_required
 def submit(id):
@@ -21,7 +21,7 @@ def submit(id):
     interactive.ordered = True
     db.session.commit()
     user = User.query.filter_by(id=current_user.id).first()
-    send_email(MAIL_USERNAME, 'Submit tour', 'interactive/email/submit', user=user, interactive=interactive)
+    send_email(current_app.config['MAIL_USERNAME'], 'Submit tour', 'interactive/email/submit', user=user, interactive=interactive)
     catalogs = Catalog.get_all()
     return redirect(url_for('interactive.list'))
 
