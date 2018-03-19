@@ -90,12 +90,12 @@ def user():
     user1.username = 'blue'
     user1.role_id = 2
     user1.email = 'blue@blue.com'
-    user1.phone = '0921111111'
-    user1.add = 'sfsfsdfsafsdfsfasfsfa'
+    user1.phone = '092222221'
+    user1.add = 'sfsfdfdsfsdsdfasfsfa'
     user1.password_hash = generate_password_hash('1111', method="pbkdf2:sha1")
     user1.is_admin = False
     user1.confirmed = True
-    db.session.add(user)
+    db.session.add(user1)
     db.session.commit()   
 
 @manager.command
