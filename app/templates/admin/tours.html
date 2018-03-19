@@ -20,11 +20,12 @@
 			            <th>User_ID</th>
 			            <th>Car_type</th>
 			            <th>Tour_type</th>
+			            <th>Start_time</th>			            
 			            <th>Tour_guide</th>
 			            <th>Total_price</th>
 			            <th>Paied</th>
 			            <th>Comfirmed</th>
-			            <th>Order_time</th>
+
 			        </tr>
               </thead>
               <tbody>
@@ -35,6 +36,7 @@
 			            <td><a href="{{url_for('admin.user', id = tour.userid) }}">{{ tour.userid }}</a></td>
 			           	<td>{{ tour.get_car(tour.car_type).first().car_name }}</td>
 			           	<td>{{ tour.get_tour(tour.tour_type).first().tour_name }}</td>
+			            <td>{{ (tour.tour_date) }}</td>	  			           	
 			           	<td>{{ tour.tour_guide }}</td>
    			            <td>${{ tour.total_price }}</td>  	
 			            {% if tour.paied == True  %}
@@ -47,7 +49,7 @@
 			            {% else %}
 	                    	<td><a href="{{ url_for('admin.comfirm_tour', id=tour.id) }}" class="glyphicon glyphicon-ok-sign"></a></td>
 	                    {% endif %}	                    
-			            <td>{{ (tour.order_datetime).strftime("%Y-%m-%d %H:%M:%S") }}</td>	                    
+                  
 			        </tr>
 			       {% endfor %}
 			       {% else %}

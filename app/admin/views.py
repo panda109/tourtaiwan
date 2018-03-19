@@ -38,6 +38,7 @@ def comfirm_tour(id):
     tour = Interactive.query.filter_by(id=id).first()
     if tour.comfirmed == False :
         tour.comfirmed = True
+        tour.comfirmed_datetime = datetime.datetime.utcnow()
         #db.session.add(order)
         db.session.commit()
         user = User.query.filter_by(id=tour.userid).first()
@@ -45,7 +46,7 @@ def comfirm_tour(id):
         flash('Tour was comfirmed and send email to user.')
     page = 1
     per_page = 1
-    tours = Interactive.query.order_by(Interactive.order_datetime.desc()).paginate(page,per_page,error_out=False)
+    tours = Interactive.query.filter_by(id=id).paginate(page,per_page,error_out=False)
     catalogs = Catalog.get_all()
     return render_template("admin/tours.html", catalogs=catalogs, tours=tours)
 
@@ -241,7 +242,7 @@ def shipout_order(id):
     order = Order.query.filter_by(id=id).first()
     if order.shipout == False :
         order.shipout = True
-        order.ship_datetime = datetime.datetime.now().strftime("%Y-%m-%d")
+        order.ship_datetime = datetime.datetime.utcnow().strftime("%Y-%m-%d")
         #db.session.add(order)
         db.session.commit()
         user = User.query.filter_by(id=order.user_id).first()
