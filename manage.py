@@ -41,9 +41,9 @@ def rebuild():
     db.session.add(Role(name='Admin'))
     db.session.add(Role(name='User'))
     db.session.add(Role(name='Provider'))
-    db.session.add(Catalog(catalog_name="Tea package"))
-    db.session.add(Catalog(catalog_name="Tea set"))
-    db.session.add(Catalog(catalog_name="Tea food"))
+    db.session.add(Catalog(catalog_name="5 PAX"))
+    db.session.add(Catalog(catalog_name="7 PAX"))
+    db.session.add(Catalog(catalog_name="9 PAX"))
     db.session.commit()
 
 @manager.command

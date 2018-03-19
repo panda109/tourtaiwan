@@ -24,6 +24,7 @@ class Interactive(db.Model):
     __tablename__ = 'interactive'
     id = db.Column(db.Integer, primary_key=True)
     car_type = db.Column(db.Integer)
+    tour_date = db.Column(db.String(10))
     tour_type = db.Column(db.Integer)
     tour_guide = db.Column(db.Boolean, default=False)
     userid = db.Column(db.Integer)
@@ -31,6 +32,8 @@ class Interactive(db.Model):
     paied = db.Column(db.Boolean, default=False)
     comfirmed = db.Column(db.Boolean, default=False)
     order_datetime = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
+    comfirmed_datetime = db.Column(db.DateTime)
+    payment_datetime = db.Column(db.DateTime)
     
     @classmethod
     def get_car(cls, orle_id):
