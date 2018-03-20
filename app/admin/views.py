@@ -44,11 +44,7 @@ def confirm_tour(id):
         user = User.query.filter_by(id=tour.userid).first()
         send_email(user.email, 'Confirm Your Tour', 'admin/email/tour', user=user, tour=tour)
         flash('Tour was confirmed and send email to user.')
-    page = 1
-    per_page = 1
-    tours = Interactive.query.filter_by(id=id).paginate(page,per_page,error_out=False)
-    catalogs = Catalog.get_all()
-    return render_template("admin/tours.html", catalogs=catalogs, tours=tours)
+    return redirect(url_for('admin.tours', page = 1))
 
 @admin.route("/tours/<int:page>")
 @login_required
@@ -56,7 +52,7 @@ def tours(page = 1):
     """Return page showing all the products has to offer"""
     check_admin()
     per_page = 5
-    tours = Interactive.query.filter_by(ordered = True).order_by(Interactive.order_datetime.desc()).paginate(page,per_page,error_out=False)
+    tours = Interactive.query.filter_by(ordered = True).order_by(Interactive.id.desc()).paginate(page,per_page,error_out=False)
     catalogs = Catalog.get_all()
     return render_template("admin/tours.html", catalogs=catalogs, tours=tours)
 

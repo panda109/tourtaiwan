@@ -1,0 +1,11 @@
+Dear ,
+
+{{ user.username }} already paied(deposit 10%) a tour.
+
+Tour id : {{ interactive.id }}
+
+Sincerely,
+
+The TourTaiwan Team
+
+Note: replies to this email address are not monitored.
