@@ -237,7 +237,7 @@ $(document).ready(function(){
                       <img src ="{{ url_for('static', filename='product/images/'+  product.imgurl) }}" class="img-responsive center-block">
                   </a>
                   <p>
-                  <div class="price">Price : ${{ product.price_str() }}/Day</div>
+                  <div class="price">Price : ${{ product.price_str() }} / Day</div>
                   <p>
                   <a class="btn btn-primary" href="{{ url_for('product.show_product', id=product.id ) }}">Details</a>
 		<p>
