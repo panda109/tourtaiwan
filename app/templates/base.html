@@ -109,15 +109,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-$(document).ready(function(){
-  $('img').each(function(){
-      var date = new Date;
-      // add the current unix timestamp in microseconds to the the image src as a query string
-      this.src = this.src + '?' + date.getTime();
-   });
-});
-</script>
 {% endblock %}
 
 {% block content %}
