@@ -9,6 +9,7 @@ from ..email import send_email
 from . import main
 from .forms import NameForm
 from ..models import Catalog
+from flask_sse import sse
 
 @main.route('/message')
 @login_required
@@ -26,6 +27,7 @@ def post_message():
     post.post_datetime = datetime.datetime.utcnow()
     db.session.add(post)
     db.session.commit()
+    sse.publish({"message": "updatemessage"}, type='greeting')
     #posts = Post.query.order_by(Post.post_datetime.desc()).filter_by()
     return jsonify({'value' : 'Succesed.'})
 
