@@ -11,6 +11,7 @@ import os
 from flask_uploads import UploadSet, IMAGES
 from flask_wtf import FlaskForm
 from flask_wtf.csrf import CSRFProtect
+from flask_sse import sse
 bootstrap = Bootstrap()
 mail = Mail()
 moment = Moment()
@@ -47,4 +48,5 @@ def create_app(config_name):
     app.register_blueprint(linebot_blueprint, url_prefix='/linebot')    
     from .interactive import interactive as interactive_blueprint
     app.register_blueprint(interactive_blueprint, url_prefix='/interactive')   
+    app.register_blueprint(sse, url_prefix='/stream')
     return app
