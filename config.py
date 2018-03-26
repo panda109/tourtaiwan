@@ -1,9 +1,9 @@
-# config.py
+ # config.py
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
-UPLOADPATH = os.getcwd() + '\\static\\_upload\\images\\'
-P_IMAGEPATH = os.getcwd() + '\\static\\product\\images\\'
-S_IMAGEPATH = os.getcwd() + '\\static\\story\\images\\'
+#UPLOADPATH = os.getcwd() + '\\static\\_upload\\images\\'
+#P_IMAGEPATH = os.getcwd() + '\\static\\product\\images\\'
+#S_IMAGEPATH = os.getcwd() + '\\static\\story\\images\\'
 
 #UPLOADPATH = os.getcwd() + '/static/_upload/images/'
 #P_IMAGEPATH = os.getcwd() + '/static/product/images/'
@@ -11,10 +11,11 @@ S_IMAGEPATH = os.getcwd() + '\\static\\story\\images\\'
 
 #IPPORT = 'tourtaiwan.me'
 #IPPORT = '10.90.7.37:5000'
-IPPORT = '192.168.0.11:5000'
+#IPPORT = '192.168.0.11:5000'
 #IPPORT = '192.168.43.243:5000'
 #IPPORT = '29fa258b.ngrok.io'
-mailpassword='panda109'
+#IPPORT = 'http://13.231.247.157:5000/'
+mailpassword=''
 
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or '!QIOD*Lioisfhishiwiwe98ew9233'
@@ -34,7 +35,8 @@ class Config(object):
     FLASKY_MAIL_SENDER = 'TourTaiwan Admin <tourtaiwan5812@gmail.com>'
     FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN')
     UPLOADED_IMAGES_DEST = UPLOADPATH
-
+    REDIS_URL = "redis://localhost"
+    
     @staticmethod
     def init_app(app):
         pass
