@@ -19,6 +19,8 @@ Flask-Script==2.0.6
 Flask-SQLAlchemy==2.3.2
 Flask-Uploads==0.2.1
 Flask-WTF==0.14.2
+flask-sse==0.2.1
+redis==2.10.6
 functools32==3.2.3.post2
 get==1.0.3
 idna==2.6

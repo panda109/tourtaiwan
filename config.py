@@ -10,7 +10,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 #S_IMAGEPATH = os.getcwd() + '/static/story/images/'
 
 #IPPORT = 'tourtaiwan.me'
-#IPPORT = '10.90.7.37:5000'
+#IPPORT = '172.24.12.46:5000'
 #IPPORT = '192.168.0.11:5000'
 #IPPORT = '192.168.43.243:5000'
 #IPPORT = '29fa258b.ngrok.io'
